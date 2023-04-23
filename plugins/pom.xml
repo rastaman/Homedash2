@@ -51,7 +51,9 @@
 
 	<properties>
 		<oshi.version>6.4.1</oshi.version>
+		<guava.version>24.1.1-jre</guava.version>
 	</properties>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -59,8 +61,14 @@
 				<artifactId>oshi-core</artifactId>
 				<version>${oshi.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
     <build>
         <pluginManagement>
 

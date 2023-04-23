@@ -30,7 +30,6 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.imgscalr/imgscalr-lib -->
         <dependency>
