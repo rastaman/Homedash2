@@ -2,7 +2,7 @@ package com.ftpix.homedash.app.controllers;
 
 import com.ftpix.homedash.plugin.plex.PlexPlugin;
 import com.ftpix.homedash.plugins.Plugin;
-import com.ftpix.homedash.plugins.SonarrTvPlugin;
+//import com.ftpix.homedash.plugins.SonarrTvPlugin;
 import com.ftpix.homedash.plugins.SystemInfoPlugin;
 import com.ftpix.homedash.plugins.TransmissionPlugin;
 import com.ftpix.homedash.plugins.couchpotato.CouchPotatoPlugin;
@@ -45,7 +45,7 @@ public enum PluginController {
             PiHolePlugin.class,
             PlexPlugin.class,
             PortMapperPlugin.class,
-            SonarrTvPlugin.class,
+            //SonarrTvPlugin.class,
             SpotifyPlugin.class,
             SystemInfoPlugin.class,
             TransmissionPlugin.class,
