@@ -4,7 +4,7 @@ import com.ftpix.homedash.models.Version;
 import com.ftpix.homedash.updater.exceptions.WrongInstallPathStructure;
 import com.ftpix.homedash.updater.exceptions.WrongVersionPatternException;
 import edu.emory.mathcs.backport.java.util.Collections;
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -357,6 +357,11 @@ public class Updater {
     private void unZipIt(String zipFile, String outputFolder) throws ZipException {
         ZipFile zip = new ZipFile(zipFile);
         zip.extractAll(outputFolder);
+        try {
+			zip.close();
+		} catch (IOException e) {
+			throw new ZipException(e);
+		}
     }
 
 
