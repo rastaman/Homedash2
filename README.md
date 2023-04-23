@@ -6,6 +6,8 @@ Project status: **updated dependencies, just toying with it**.
 
 ## Requirements
 
+At least Java 11, works with Java 17 too.
+
 ### Build
 
 1. Java SDK 11
@@ -14,8 +16,6 @@ Project status: **updated dependencies, just toying with it**.
 ### Run
 
 1. Java 11
-
-
 
 ## Run from distribution
 
