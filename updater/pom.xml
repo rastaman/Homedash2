@@ -5,7 +5,7 @@
     <parent>
         <artifactId>homedash</artifactId>
         <groupId>com.ftpix.homedash</groupId>
-        <version>2021.1</version>
+        <version>2023.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -50,7 +50,7 @@
         <dependency>
         	<groupId>com.ftpix.homedash.plugins</groupId>
         	<artifactId>docker</artifactId>
-        	<version>2021.1</version>
+        	<version>2023.4</version>
         </dependency>
     </dependencies>
 
