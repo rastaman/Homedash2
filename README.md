@@ -6,7 +6,7 @@ Project status: **updated dependencies, just toying with it**.
 
 ## Requirements
 
-At least Java 11, works with Java 17 too.
+At least Java 11, work to make it works with Java 17 is ongoing.
 
 ### Build
 
