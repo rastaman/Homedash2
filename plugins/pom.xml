@@ -49,6 +49,18 @@
 
     </dependencies>
 
+	<properties>
+		<oshi.version>6.4.1</oshi.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.github.oshi</groupId>
+				<artifactId>oshi-core</artifactId>
+				<version>${oshi.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
     <build>
         <pluginManagement>
 

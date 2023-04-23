@@ -85,7 +85,7 @@ public class NetworkMonitorPlugin extends Plugin {
     public Map<String, String> validateSettings(Map<String, String> settings) {
         Map<String, String> errors = new HashMap<String, String>();
 
-        NetworkIF[] interfaces = systemInfo.getHardware().getNetworkIFs();
+        NetworkIF[] interfaces = systemInfo.getHardware().getNetworkIFs().toArray(new NetworkIF[] {});
 
         try {
             Optional<NetworkIF> ifConfigOpt = Stream.of(interfaces)
@@ -130,14 +130,13 @@ public class NetworkMonitorPlugin extends Plugin {
 
     @Override
     protected Map<String, Object> getSettingsModel() {
-        return Stream.of(systemInfo.getHardware().getNetworkIFs()).collect(Collectors.toMap(NetworkIF::getName, netIf -> String.join(", ", netIf.getIPv4addr())));
+        return systemInfo.getHardware().getNetworkIFs().stream().collect(Collectors.toMap(NetworkIF::getName, netIf -> String.join(", ", netIf.getIPv4addr())));
     }
 
     //////// plugin methods
     public Optional<NetworkInfo> getNetworkInfo(String netInterface) {
 
-
-        Optional<NetworkIF> ifConfigOpt = Stream.of(systemInfo.getHardware().getNetworkIFs())
+        Optional<NetworkIF> ifConfigOpt = systemInfo.getHardware().getNetworkIFs().stream()
                 .filter(iface -> iface.getName().equalsIgnoreCase(netInterface)).findFirst();
         NetworkInfo networkInfo = new NetworkInfo();
         if (ifConfigOpt.isPresent()) {

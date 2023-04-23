@@ -82,21 +82,21 @@ public class SystemInfoPlugin extends Plugin {
     @Override
     protected void init() {
         CentralProcessor processor = systemInfo.getHardware().getProcessor();
-        hardwareInfo.family = processor.getFamily();
-        hardwareInfo.identifier = processor.getIdentifier();
+        hardwareInfo.family = processor.getProcessorIdentifier().getFamily();
+        hardwareInfo.identifier = processor.getProcessorIdentifier().getIdentifier();
         hardwareInfo.logicalCores = processor.getLogicalProcessorCount();
         hardwareInfo.physicalCores = processor.getPhysicalProcessorCount();
-        hardwareInfo.is64 = processor.isCpu64bit();
-        hardwareInfo.model = processor.getModel();
-        hardwareInfo.name = processor.getName();
-        hardwareInfo.vendor = processor.getVendor();
+        hardwareInfo.is64 = processor.getProcessorIdentifier().isCpu64bit();
+        hardwareInfo.model = processor.getProcessorIdentifier().getModel();
+        hardwareInfo.name = processor.getProcessorIdentifier().getName();
+        hardwareInfo.vendor = processor.getProcessorIdentifier().getVendor();
 
         OperatingSystem os = systemInfo.getOperatingSystem();
         osInfo.family = os.getFamily();
         osInfo.manufacturer = os.getManufacturer();
-        osInfo.version = os.getVersion().getVersion();
-        osInfo.build = os.getVersion().getBuildNumber();
-        osInfo.codename = os.getVersion().getCodeName();
+        osInfo.version = os.getVersionInfo().getVersion();
+        osInfo.build = os.getVersionInfo().getBuildNumber();
+        osInfo.codename = os.getVersionInfo().getCodeName();
     }
 
     @Override
@@ -276,7 +276,7 @@ public class SystemInfoPlugin extends Plugin {
 
         };
 
-        OSProcess[] running = systemInfo.getOperatingSystem().getProcesses(Integer.MAX_VALUE, OperatingSystem.ProcessSort.CPU);
+        OSProcess[] running = systemInfo.getOperatingSystem().getProcesses(OperatingSystem.ProcessFiltering.ALL_PROCESSES, OperatingSystem.ProcessSorting.CPU_DESC, 0).toArray(new OSProcess[]{});
 
 
         Stream.of(running)
@@ -309,12 +309,12 @@ public class SystemInfoPlugin extends Plugin {
 
         CpuInfo info = new CpuInfo();
 
-        info.cpuUsage = Math.ceil(processor.getSystemCpuLoad() * 100);
+        info.cpuUsage = Math.ceil(processor.getSystemCpuLoad(5) * 100);
 
 
-       info.coreUsage =  DoubleStream.of(processor.getProcessorCpuLoadBetweenTicks()).map(d ->  Math.ceil(d * 100)).toArray();
+       info.coreUsage =  DoubleStream.of(processor.getProcessorCpuLoad(1000)).map(d ->  Math.ceil(d * 100)).toArray();
 
-        hardwareInfo.uptime = processor.getSystemUptime();
+        hardwareInfo.uptime = systemInfo.getOperatingSystem().getSystemUptime();
 
         try {
             info.fanSpeed = sensors.getFanSpeeds();

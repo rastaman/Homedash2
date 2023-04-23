@@ -222,7 +222,7 @@ public class HarddiskPlugin extends Plugin {
     @Override
     protected Map<String, Object> getSettingsModel() {
 
-        return Stream.of(systemInfo.getOperatingSystem().getFileSystem().getFileStores()).filter(fs -> {
+        return systemInfo.getOperatingSystem().getFileSystem().getFileStores().stream().filter(fs -> {
             File f = new File(fs.getMount());
             return f.exists() && f.canRead();
         }).collect(Collectors.toMap(OSFileStore::getMount, Function.identity(), (o, o2) -> o));
